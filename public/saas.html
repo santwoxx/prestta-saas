@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin SaaS · Prestta</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='26' fill='%2316181D'/><text y='72' x='50' text-anchor='middle' font-size='62' font-family='sans-serif' font-weight='bold' fill='%23F5A524'>P</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/app.css">
+<style>
+  /* Sidebar customizada para o Master Admin */
+  .sidebar { background: #0D1526; } /* Fundo um pouco mais azul-escuro pro SaaS */
+  .sb-brand .logo-mark { background: linear-gradient(135deg, #12B981, #0E7A58); color: #fff; }
+  .sb-brand b { color: #fff; }
+  .kpi-master { border-color: rgba(18, 185, 129, .2); }
+  .kpi-master .ic { background: rgba(18, 185, 129, .1); color: #12B981; }
+  .table-tenant { margin-top: 10px; }
+  .badge-status { padding: 3px 8px; border-radius: 6px; font-size: .68rem; font-weight: 700; text-transform: uppercase; }
+  .stt-ativo { background: var(--green-soft); color: #0B7A57; }
+  .stt-trial { background: var(--gold-soft); color: var(--gold-3); }
+  .stt-atrasado { background: #FFF0E6; color: #C2580E; }
+  .stt-cancelado { background: var(--red-soft); color: #B4242A; }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <!-- Menu Lateral -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-brand">
+      <span class="logo-mark">S</span>
+      <div>
+        <b>Admin Prestta</b>
+        <span style="color:#34D8A4">SaaS Master</span>
+      </div>
+    </div>
+
+    <nav class="sb-nav">
+      <div class="sb-label">Controle</div>
+      <a class="sb-link on" data-view="visao_geral" onclick="goSaaS('visao_geral')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        Visão Geral
+      </a>
+      <a class="sb-link" data-view="tenants" onclick="goSaaS('tenants')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        Lojas / Contas
+      </a>
+      <a class="sb-link" data-view="leads" onclick="goSaaS('leads')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+        Funil de Leads
+      </a>
+      <div class="sb-label">Desenvolvedor</div>
+      <a class="sb-link" data-view="webhooks" onclick="goSaaS('webhooks')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+        Webhooks Cakto
+      </a>
+    </nav>
+
+    <div class="sb-foot">
+      <div class="sb-user" onclick="location.href='/api/auth/logout'">
+        <div class="av" style="background:#B4242A;color:#fff">S</div>
+        <div>
+          <b>Sair do Painel</b>
+          <span>Sessão segura</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="backdrop-sb" id="sbBackdrop"></div>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="burger" id="burger" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <div>
+        <h1 id="pageTitle">SaaS Overview</h1>
+        <div class="sub" id="pageSub">Métricas de crescimento</div>
+      </div>
+      <div class="topbar-actions">
+        <a href="/" target="_blank" class="btn btn-outline btn-sm">Ver Landing Page</a>
+      </div>
+    </header>
+
+    <main class="content" id="content">
+      <div class="loading">Carregando painel do dono...</div>
+    </main>
+  </div>
+</div>
+
+<script src="/js/core.js"></script>
+<script src="/js/saas.js"></script>
+<script>
+  // Controle simples do burger menu (mobile)
+  const burger = document.getElementById('burger');
+  const sidebar = document.getElementById('sidebar');
+  const bd = document.getElementById('sbBackdrop');
+  if (burger) {
+    burger.onclick = () => { sidebar.classList.toggle('open'); bd.classList.toggle('on'); };
+    bd.onclick = () => { sidebar.classList.remove('open'); bd.classList.remove('on'); };
+  }
+</script>
+</body>
+</html>

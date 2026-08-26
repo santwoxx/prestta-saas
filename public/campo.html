@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<meta name="theme-color" content="#16181D">
+<title>App do Campo · Prestta</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='26' fill='%2316181D'/><text y='72' x='50' text-anchor='middle' font-size='62' font-family='sans-serif' font-weight='bold' fill='%23F5A524'>P</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/app.css">
+<style>
+  /* Ajustes específicos de animações e utilitários pro app mobile */
+  .fade-in { animation: fadeIn .3s; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } }
+  .logout-btn { background: rgba(255,255,255,.1); color: #fff; border: 0; padding: 6px 10px; border-radius: 8px; font-size: .75rem; cursor: pointer; display: flex; align-items: center; gap: 6px; margin-left: auto; }
+</style>
+</head>
+<body>
+
+<div class="field-app">
+  <!-- Cabeçalho (Fixo no topo) -->
+  <header class="fa-top" id="topHeader">
+    <div class="row">
+      <div class="avatar" id="userInitial" style="background: linear-gradient(135deg, var(--gold-2), var(--gold)); color: #26170A;">?</div>
+      <div>
+        <h1 id="userName">Carregando...</h1>
+        <div class="sub" id="userTenant">Aguarde</div>
+      </div>
+      <button class="logout-btn" onclick="location.href='/api/auth/logout'">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+        Sair
+      </button>
+    </div>
+
+    <!-- Estatísticas diárias -->
+    <div class="fa-stats">
+      <div class="fa-stat">
+        <b id="statTotal">0</b>
+        <span>OS Hoje</span>
+      </div>
+      <div class="fa-stat">
+        <b id="statDone">0</b>
+        <span>Concluídas</span>
+      </div>
+      <div class="fa-stat">
+        <b id="statGanhos">R$ 0</b>
+        <span>Ganhos hoje</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Corpo (Conteúdo dinâmico) -->
+  <main class="fa-body" id="appBody">
+    <div class="loading fade-in">Buscando sua agenda...</div>
+  </main>
+
+  <!-- Navegação inferior (Tabs) -->
+  <nav class="fa-nav">
+    <button class="on" data-tab="hoje">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+      Hoje
+    </button>
+    <button data-tab="historico">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"/><path d="M12 6V12L16 14"/></svg>
+      Histórico
+    </button>
+    <button data-tab="perfil">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+      Perfil
+    </button>
+  </nav>
+</div>
+
+<!-- O core e a lógica do app de campo -->
+<script src="/js/core.js"></script>
+<script src="/js/campo.js"></script>
+</body>
+</html>
