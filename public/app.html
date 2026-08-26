@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Painel · Prestta</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='26' fill='%2316181D'/><text y='72' x='50' text-anchor='middle' font-size='62' font-family='sans-serif' font-weight='bold' fill='%23F5A524'>P</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+
+<div class="shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-brand">
+      <span class="logo-mark">P</span>
+      <div>
+        <b>Prestta</b>
+        <span id="tenantName">carregando…</span>
+      </div>
+    </div>
+
+    <nav class="sb-nav" id="sbNav"></nav>
+
+    <div class="sb-foot">
+      <div id="trialBox"></div>
+      <div class="sb-user" id="userBox"></div>
+    </div>
+  </aside>
+
+  <div class="backdrop-sb" id="sbBackdrop"></div>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="burger" id="burger" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <div>
+        <h1 id="pageTitle">Painel geral</h1>
+        <div class="sub" id="pageSub"></div>
+      </div>
+      <div class="topbar-actions" id="topActions"></div>
+    </header>
+
+    <main class="content" id="content">
+      <div class="loading">Carregando seu painel…</div>
+    </main>
+  </div>
+</div>
+
+<script src="/js/core.js"></script>
+<script src="/js/app.js"></script>
+</body>
+</html>

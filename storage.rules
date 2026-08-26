@@ -1,0 +1,11 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Da mesma forma que o banco de dados, os arquivos deste SaaS (fotos e assinaturas)
+    // estão sendo salvos localmente via backend (server/storage.js) em /public/uploads.
+    // Como o Firebase Storage não é utilizado pelo frontend, ele deve ser totalmente bloqueado.
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

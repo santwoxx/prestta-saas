@@ -1,0 +1,21 @@
+{
+  "name": "prestta",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Prestta - SaaS de gestao para prestadores de servicos (ordens de servico, equipe em campo, assinatura digital, financeiro e assinaturas via Cakto)",
+  "type": "commonjs",
+  "main": "server/index.js",
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "seed": "node server/seed.js",
+    "reset": "node server/seed.js --reset"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "firebase-admin": "^14.3.0"
+  }
+}

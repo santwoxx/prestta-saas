@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Criar conta · Prestta</title>
+<meta name="description" content="Crie sua conta no Prestta e teste 14 dias grátis, sem cartão de crédito.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='26' fill='%2316181D'/><text y='72' x='50' text-anchor='middle' font-size='62' font-family='sans-serif' font-weight='bold' fill='%23F5A524'>P</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/site.css">
+<style>
+  .plan-pick { display: flex; flex-direction: column; gap: 10px; }
+  .plan-opt {
+    border: 1.5px solid var(--line); border-radius: 13px; padding: 14px 16px; cursor: pointer;
+    display: flex; align-items: center; gap: 12px; transition: all .18s; background: #fff;
+  }
+  .plan-opt:hover { border-color: var(--gold); }
+  .plan-opt.sel { border-color: var(--gold); background: var(--gold-soft); }
+  .plan-opt .r { margin-left: auto; text-align: right; }
+  .plan-opt b { display: block; font-size: .95rem; }
+  .plan-opt span { font-size: .78rem; color: var(--muted); }
+  .plan-opt .price-v { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; }
+  .steps-dots { display: flex; gap: 6px; justify-content: center; margin-bottom: 22px; }
+  .steps-dots i { width: 30px; height: 4px; border-radius: 99px; background: var(--bg-2); display: block; transition: background .25s; }
+  .steps-dots i.on { background: linear-gradient(90deg, var(--gold-2), var(--gold)); }
+</style>
+</head>
+<body>
+<div class="auth-page">
+  <aside class="auth-side">
+    <a href="/" class="logo logo-dark"><span class="logo-mark">P</span> Prestta</a>
+    <div>
+      <span class="pill pill-light">14 dias grátis · sem cartão</span>
+      <h2>Em 1 minuto sua operação já está organizada</h2>
+      <p>Você cria a conta, escolhe se quer começar com dados de exemplo e já entra no painel. Sem instalação, sem configuração complicada.</p>
+      <ul class="cta-points" style="margin-top:28px">
+        <li><span class="ck">✓</span> Importamos a sua planilha atual</li>
+        <li><span class="ck">✓</span> Treinamos a sua equipe por videochamada</li>
+        <li><span class="ck">✓</span> Cancele quando quiser, sem multa</li>
+      </ul>
+    </div>
+    <p style="font-size:.8rem;color:#6E7C96">© <span class="year">2026</span> Prestta Tecnologia</p>
+  </aside>
+
+  <main class="auth-main">
+    <div class="auth-box">
+      <div class="card" id="card">
+        <div class="steps-dots"><i class="on"></i><i></i><i></i></div>
+        <h1 id="title">Criar sua conta</h1>
+        <p class="sub" id="subtitle">Comece pelo básico — leva menos de um minuto.</p>
+
+        <div class="form-msg" id="msg"></div>
+
+        <form id="form" novalidate>
+          <!-- Etapa 1 -->
+          <div class="fstep active" data-fstep="0">
+            <button type="button" class="btn btn-block btn-lg" id="btnGoogle" style="background:#fff;color:#333;border:1px solid #ccc;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:20px;font-weight:600">
+              <svg viewBox="0 0 24 24" width="18" height="18"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+              Cadastrar com Google
+            </button>
+            <div style="text-align:center;color:#888;margin-bottom:15px;font-size:0.9rem">ou com seu e-mail</div>
+
+            <div class="field">
+              <label for="name">Seu nome</label>
+              <input id="name" placeholder="Nome completo" autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="email">E-mail</label>
+              <input id="email" type="email" placeholder="voce@suaempresa.com.br" autocomplete="email">
+            </div>
+            <div class="field">
+              <label for="password">Senha de acesso</label>
+              <input id="password" type="password" placeholder="Mínimo de 6 caracteres" autocomplete="new-password">
+            </div>
+          </div>
+
+          <!-- Etapa 2 -->
+          <div class="fstep" data-fstep="1">
+            <div class="field">
+              <label for="company">Nome da empresa</label>
+              <input id="company" placeholder="Ex.: MontaFácil Serviços" autocomplete="organization">
+            </div>
+            <div class="field">
+              <label for="phone">WhatsApp com DDD</label>
+              <input id="phone" inputmode="numeric" placeholder="(47) 99999-9999" autocomplete="tel">
+            </div>
+            <div style="display:grid;grid-template-columns:2fr 1fr;gap:12px">
+              <div class="field">
+                <label for="city">Cidade</label>
+                <input id="city" placeholder="Sua cidade">
+              </div>
+              <div class="field">
+                <label for="uf">UF</label>
+                <input id="uf" maxlength="2" placeholder="SC" style="text-transform:uppercase">
+              </div>
+            </div>
+            <div class="field">
+              <label for="segment">Segmento</label>
+              <select id="segment">
+                <option value="montagem-de-moveis">Montagem de móveis</option>
+                <option value="assistencia-tecnica">Assistência técnica</option>
+                <option value="climatizacao">Climatização / refrigeração</option>
+                <option value="eletrica-hidraulica">Elétrica e hidráulica</option>
+                <option value="limpeza">Limpeza e conservação</option>
+                <option value="instalacoes">Instalações em geral</option>
+                <option value="ti-telecom">TI e telecom</option>
+                <option value="obras">Obras e reformas</option>
+                <option value="outro">Outro</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Quantas pessoas atendem em campo?</label>
+              <div class="choice-grid" id="teamChoices">
+                <div class="choice" data-value="1-2">Só eu / 2</div>
+                <div class="choice sel" data-value="3-5">3 a 5</div>
+                <div class="choice" data-value="6-10">6 a 10</div>
+                <div class="choice" data-value="11+">Mais de 10</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Etapa 3 -->
+          <div class="fstep" data-fstep="2">
+            <div class="cycle-toggle" id="cycleToggle" style="display:flex;width:100%;margin-bottom:16px">
+              <button type="button" class="on" data-cycle="mensal" style="flex:1">Mensal</button>
+              <button type="button" data-cycle="anual" style="flex:1">Anual <span class="save-tag">-20%</span></button>
+            </div>
+            <div class="plan-pick" id="planPick"></div>
+            <label style="display:flex;gap:10px;align-items:flex-start;font-size:.84rem;color:#35405A;cursor:pointer;margin-top:16px">
+              <input type="checkbox" id="demo" checked style="width:auto;margin-top:3px">
+              <span>Começar com <b>dados de exemplo</b> (ordens, equipe e financeiro fictícios) para eu navegar antes de cadastrar os meus.</span>
+            </label>
+            <p class="muted" style="font-size:.78rem;margin-top:12px">
+              Você não paga nada agora. A cobrança só acontece se você decidir continuar depois dos 14 dias.
+            </p>
+          </div>
+
+          <div class="form-nav">
+            <button type="button" class="btn btn-outline" id="btnBack" style="display:none">Voltar</button>
+            <button type="submit" class="btn btn-primary btn-block" id="btnNext">Continuar →</button>
+          </div>
+        </form>
+      </div>
+
+      <p class="center muted" style="font-size:.88rem;margin-top:20px">
+        Já tem conta? <a href="/entrar" style="color:var(--gold-3);font-weight:600">Entrar</a>
+      </p>
+    </div>
+  </main>
+</div>
+
+<script>
+document.querySelectorAll('.year').forEach((e) => e.textContent = new Date().getFullYear());
+
+const params = new URLSearchParams(location.search);
+const fsteps = document.querySelectorAll('.fstep');
+const dots = document.querySelectorAll('.steps-dots i');
+const msg = document.getElementById('msg');
+const btnNext = document.getElementById('btnNext');
+const btnBack = document.getElementById('btnBack');
+const titles = [
+  ['Criar sua conta', 'Comece pelo básico — leva menos de um minuto.'],
+  ['Sobre a sua empresa', 'Assim já deixamos o sistema com a sua cara.'],
+  ['Escolha o seu plano', 'Você testa 14 dias grátis antes de qualquer cobrança.'],
+];
+let cur = 0;
+let cycle = params.get('cycle') === 'anual' ? 'anual' : 'mensal';
+let plan = params.get('plano') || 'pro';
+let PLANS = [];
+window.googleToken = null;
+
+// Pré-preenchimento vindo da landing (?nome=&email=)
+['name', 'email', 'company', 'phone'].forEach((k) => {
+  const v = params.get(k) || params.get({ name: 'nome', email: 'email', company: 'empresa', phone: 'telefone' }[k]);
+  if (v) document.getElementById(k).value = v;
+});
+
+document.getElementById('phone').addEventListener('input', (e) => {
+  const d = e.target.value.replace(/\D/g, '').slice(0, 11);
+  e.target.value = d.length > 10 ? `(${d.slice(0,2)}) ${d.slice(2,7)}-${d.slice(7)}`
+    : d.length > 6 ? `(${d.slice(0,2)}) ${d.slice(2,6)}-${d.slice(6)}`
+    : d.length > 2 ? `(${d.slice(0,2)}) ${d.slice(2)}` : d;
+});
+
+document.querySelectorAll('#teamChoices .choice').forEach((c) => {
+  c.onclick = () => {
+    document.querySelectorAll('#teamChoices .choice').forEach((x) => x.classList.remove('sel'));
+    c.classList.add('sel');
+  };
+});
+
+const brl = (c) => (c / 100).toLocaleString('pt-BR', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+
+function renderPlans() {
+  document.getElementById('planPick').innerHTML = PLANS.map((p) => `
+    <div class="plan-opt ${p.id === plan ? 'sel' : ''}" data-plan="${p.id}">
+      <div>
+        <b>${p.name} ${p.popular ? '⭐' : ''}</b>
+        <span>Até ${p.limits.users} usuários · ${p.tagline}</span>
+      </div>
+      <div class="r">
+        <div class="price-v">R$ ${brl(cycle === 'anual' ? p.price_anual : p.price_mensal)}</div>
+        <span style="font-size:.72rem;color:var(--muted)">/mês</span>
+      </div>
+    </div>`).join('');
+  document.querySelectorAll('.plan-opt').forEach((el) => {
+    el.onclick = () => { plan = el.dataset.plan; renderPlans(); };
+  });
+}
+
+document.querySelectorAll('#cycleToggle button').forEach((b) => {
+  b.onclick = () => {
+    document.querySelectorAll('#cycleToggle button').forEach((x) => x.classList.remove('on'));
+    b.classList.add('on');
+    cycle = b.dataset.cycle;
+    renderPlans();
+  };
+});
+if (cycle === 'anual') document.querySelector('[data-cycle="anual"]').click();
+
+fetch('/api/plans').then((r) => r.json()).then((d) => { PLANS = d.plans; renderPlans(); });
+
+function show(i) {
+  cur = i;
+  fsteps.forEach((s, k) => s.classList.toggle('active', k === i));
+  dots.forEach((d, k) => d.classList.toggle('on', k <= i));
+  document.getElementById('title').textContent = titles[i][0];
+  document.getElementById('subtitle').textContent = titles[i][1];
+  btnBack.style.display = i ? 'inline-flex' : 'none';
+  btnNext.textContent = i === fsteps.length - 1 ? 'Criar conta e começar →' : 'Continuar →';
+  msg.className = 'form-msg';
+}
+
+const val = (id) => document.getElementById(id).value.trim();
+function fail(t) { msg.textContent = t; msg.className = 'form-msg err'; return false; }
+
+function validate(i) {
+  if (i === 0) {
+    if (!window.googleToken) {
+      if (val('name').length < 3) return fail('Digite seu nome completo.');
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val('email'))) return fail('Digite um e-mail válido.');
+      if (val('password').length < 6) return fail('A senha precisa ter ao menos 6 caracteres.');
+    }
+  }
+  if (i === 1) {
+    if (val('company').length < 2) return fail('Digite o nome da sua empresa.');
+    if (val('phone').replace(/\D/g, '').length < 10) return fail('Digite o WhatsApp com DDD.');
+  }
+  return true;
+}
+
+btnBack.onclick = () => show(Math.max(0, cur - 1));
+
+document.getElementById('form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  if (!validate(cur)) return;
+  if (cur < fsteps.length - 1) return show(cur + 1);
+
+  btnNext.disabled = true;
+  btnNext.textContent = 'Criando seu ambiente...';
+  try {
+    const isGoogle = !!window.googleToken;
+    const body = {
+      company: val('company'), phone: val('phone'), city: val('city'), uf: val('uf'),
+      segment: val('segment'),
+      team_size: document.querySelector('#teamChoices .choice.sel').dataset.value,
+      plan, cycle,
+      demo: document.getElementById('demo').checked,
+      source: isGoogle ? 'cadastro_google' : 'pagina-cadastro',
+      utm: Object.fromEntries(params),
+    };
+
+    if (isGoogle) {
+      body.token = window.googleToken;
+    } else {
+      body.name = val('name');
+      body.email = val('email');
+      body.password = val('password');
+    }
+
+    const endpoint = isGoogle ? '/api/signup/google' : '/api/signup';
+
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Não foi possível criar sua conta.');
+
+    document.getElementById('card').innerHTML = `
+      <div class="form-done">
+        <div class="big">✓</div>
+        <h1 style="font-size:1.5rem">Bem-vindo, ${data.user.name.split(' ')[0]}!</h1>
+        <p class="muted">Seu ambiente está pronto com 14 dias grátis.</p>
+        <a href="${data.redirect}" class="btn btn-primary btn-block btn-lg" style="margin-top:20px">Entrar no painel →</a>
+      </div>`;
+    setTimeout(() => { location.href = data.redirect; }, 1600);
+  } catch (err) {
+    btnNext.disabled = false;
+    btnNext.textContent = 'Criar conta e começar →';
+    fail(err.message);
+  }
+});
+</script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+  import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAq-BSvXbfph0pyOEqxfTDMvqnIVuqx2Q8",
+    authDomain: "prestta.firebaseapp.com",
+    projectId: "prestta",
+    storageBucket: "prestta.firebasestorage.app",
+    messagingSenderId: "991828719660",
+    appId: "1:991828719660:web:24ee23c2509d707bc0f989",
+    measurementId: "G-PDYSV2KT4P"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+
+  const btnGoogle = document.getElementById('btnGoogle');
+  if (btnGoogle) {
+    btnGoogle.addEventListener('click', async () => {
+      btnGoogle.disabled = true;
+      btnGoogle.textContent = 'Autenticando...';
+      const msg = document.getElementById('msg');
+      msg.className = 'form-msg';
+      msg.textContent = '';
+      
+      try {
+        const result = await signInWithPopup(auth, provider);
+        window.googleToken = await result.user.getIdToken();
+        document.getElementById('name').value = result.user.displayName || '';
+        document.getElementById('email').value = result.user.email || '';
+        // Avança direto para a etapa da empresa
+        show(1);
+      } catch (err) {
+        msg.textContent = err.message || 'Erro ao autenticar com Google.';
+        msg.className = 'form-msg err';
+      } finally {
+        btnGoogle.disabled = false;
+        btnGoogle.textContent = 'Cadastrar com Google';
+      }
+    });
+  }
+</script>
+</body>
+</html>

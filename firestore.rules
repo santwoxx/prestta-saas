@@ -1,0 +1,12 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Como o sistema (Prestta) utiliza SQLite no backend e Firebase apenas para Autenticação,
+    // o Firestore não deve ser acessível diretamente pelo cliente (navegador/app).
+    // O backend tem privilégios de Admin e ignora essas regras caso venha a usar o Firestore no futuro.
+    // Portanto, a regra mais segura para este SaaS é bloquear totalmente leitura e escrita pública.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

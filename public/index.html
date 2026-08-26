@@ -1,0 +1,905 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prestta · Sistema para prestadores de serviço</title>
+<meta name="description" content="Organize ordens de serviço, equipe em campo, rota do dia, assinatura digital do cliente e o financeiro da sua empresa de serviços. Teste 14 dias grátis.">
+<meta property="og:title" content="Prestta · Sua equipe em campo sob controle total">
+<meta property="og:description" content="Do agendamento ao comprovante assinado pelo cliente. O sistema completo para prestadores de serviço.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='26' fill='%2316181D'/><text y='72' x='50' text-anchor='middle' font-size='62' font-family='sans-serif' font-weight='bold' fill='%23F5A524'>P</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+
+<div class="announce">
+  🚀 <b>14 dias grátis</b> em qualquer plano — sem cartão de crédito e com seus dados importados junto.
+</div>
+
+<nav class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="/" class="logo"><span class="logo-mark">P</span> Prestta</a>
+    <div class="nav-links" id="navLinks">
+      <a href="#recursos">Recursos</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#segmentos">Para quem é</a>
+      <a href="#precos">Preços</a>
+      <a href="#faq">Dúvidas</a>
+    </div>
+    <div class="nav-cta">
+      <a href="/entrar" class="btn btn-outline btn-sm">Entrar</a>
+      <a href="#comecar" class="btn btn-primary btn-sm">Testar grátis</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ======================================================== HERO ==== -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">sistema para prestadores de serviço</span>
+      <h1>Sua equipe em campo.<br><span class="grad">Sob controle total.</span></h1>
+      <p class="hero-sub">
+        Agenda, ordens de serviço, rota do dia, <b style="color:#E9EEF8">assinatura digital do cliente e do colaborador</b>,
+        foto do serviço concluído e o financeiro fechando sozinho. Tudo no celular da equipe — e tudo chegando
+        no seu painel, em tempo real.
+      </p>
+      <div class="hero-actions">
+        <a href="#comecar" class="btn btn-primary btn-lg">Começar teste grátis →</a>
+        <a href="/entrar?demo=1" class="btn btn-ghost btn-lg">Ver o sistema por dentro</a>
+      </div>
+      <div class="hero-trust">
+        <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> 14 dias grátis</span>
+        <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Sem cartão de crédito</span>
+        <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Pronto para usar em 10 minutos</span>
+      </div>
+    </div>
+
+    <div class="mock-stage">
+      <div class="float-badge">
+        <div class="ic">✍️</div>
+        <div>
+          <b>Cliente assinou</b>
+          <span>OS-0184 · há 2 minutos</span>
+        </div>
+      </div>
+
+      <div class="mock-window">
+        <div class="mock-bar"><i></i><i></i><i></i><span class="mock-url">app.prestta.com.br/painel</span></div>
+        <div class="mock-body">
+          <div class="mock-head">
+            <div class="mock-title">Painel geral</div>
+            <div class="mock-tag tag-ok">Hoje · 8 serviços</div>
+          </div>
+          <div class="mock-kpis">
+            <div class="mock-kpi"><span>Em andamento</span><b>3</b></div>
+            <div class="mock-kpi warn"><span>A receber</span><b>R$ 18,4k</b></div>
+            <div class="mock-kpi pos"><span>Lucro do mês</span><b>R$ 27,1k</b></div>
+          </div>
+          <div class="mock-rows">
+            <div class="mock-row">
+              <span class="mock-av" style="background:#3B82F6">AR</span>
+              <span class="n">Joelma S. · Cozinha planejada</span>
+              <span class="mock-tag tag-run">Em rota</span>
+            </div>
+            <div class="mock-row">
+              <span class="mock-av" style="background:#10B981">WS</span>
+              <span class="n">Carlos E. · Guarda-roupa 6 portas</span>
+              <span class="mock-tag tag-ok">Assinado</span>
+            </div>
+            <div class="mock-row">
+              <span class="mock-av" style="background:#8B5CF6">DM</span>
+              <span class="n">Fernanda M. · Assistência técnica</span>
+              <span class="mock-tag tag-ok">Assinado</span>
+            </div>
+            <div class="mock-row">
+              <span class="mock-av" style="background:#F5A524">RN</span>
+              <span class="n">Rita C. · Painel e rack de TV</span>
+              <span class="mock-tag tag-wait">14:30</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mock-phone">
+        <div class="phone-screen">
+          <div class="phone-top">
+            <small>OS-0184 · Passo 4 de 4</small>
+            <b>Assinatura do cliente</b>
+          </div>
+          <div class="phone-pad">
+            <div class="sign-box">
+              <svg viewBox="0 0 200 60" preserveAspectRatio="none">
+                <path class="sign-path" d="M14 44 C30 8, 44 6, 50 30 C56 52, 66 52, 74 26 C80 8, 92 10, 96 34 C100 52, 112 48, 122 28 C132 10, 146 14, 152 32 C158 48, 172 40, 186 20"/>
+              </svg>
+            </div>
+            <div class="phone-label">Joelma Silva Santos · CPF 041.***.***-22</div>
+            <div class="phone-photos"><div class="phone-photo"></div><div class="phone-photo"></div></div>
+            <div class="phone-btn">Concluir serviço</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- NÚMEROS — substitua pelos indicadores reais da sua operação antes de publicar -->
+<div class="strip">
+  <div class="wrap strip-grid">
+    <div><b data-count="12400">0</b><span>ordens de serviço por mês</span></div>
+    <div><b data-count="98" data-suffix="%">0</b><span>serviços com assinatura do cliente</span></div>
+    <div><b data-count="31" data-prefix="-" data-suffix="%">0</b><span>de retrabalho e retorno</span></div>
+    <div><b data-count="6" data-suffix="h">0</b><span>economizadas por semana na gestão</span></div>
+  </div>
+</div>
+
+<!-- ======================================================= DORES ==== -->
+<section id="recursos">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">O problema de quem vive de serviço</span>
+      <h2>Se a sua operação vive assim, o Prestta resolve</h2>
+      <p>Não é falta de trabalho. É falta de controle sobre o que já está acontecendo.</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain reveal">
+        <div class="ic">📵</div>
+        <span class="before">Hoje: grupo de WhatsApp</span>
+        <h3>Serviço perdido no meio das mensagens</h3>
+        <p>Endereço em um áudio, valor em outro, foto num terceiro. No fim do dia ninguém sabe o que foi feito.</p>
+      </div>
+      <div class="pain reveal">
+        <div class="ic">🧾</div>
+        <span class="before">Hoje: “o cliente disse que não ficou bom”</span>
+        <h3>Sem prova do que foi entregue</h3>
+        <p>Sem assinatura e sem foto, qualquer reclamação vira prejuízo seu. Com o Prestta, cada OS termina assinada.</p>
+      </div>
+      <div class="pain reveal">
+        <div class="ic">💸</div>
+        <span class="before">Hoje: planilha desatualizada</span>
+        <h3>Você não sabe quanto sobra</h3>
+        <p>Quanto a loja te deve, quanto você deve ao colaborador, e o que sobrou de verdade no mês.</p>
+      </div>
+      <div class="pain reveal">
+        <div class="ic">🚚</div>
+        <span class="before">Hoje: rota improvisada</span>
+        <h3>Equipe rodando à toa</h3>
+        <p>Dois serviços no mesmo bairro em dias diferentes. Combustível, hora e paciência indo embora.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================ COMO FUNCIONA ==== -->
+<section id="como-funciona" class="bg-ink">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Como funciona</span>
+      <h2>Do agendamento ao comprovante assinado</h2>
+      <p>Cinco passos que a sua equipe já faz todo dia — só que agora registrados, no lugar certo.</p>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step-list">
+        <button class="step active" data-step="0">
+          <span class="num">1</span>
+          <span><b>Chegou serviço</b><p>Cadastre em 30 segundos, importe a planilha da loja ou cole a lista de pedidos. O Prestta entende e cria as OS.</p></span>
+        </button>
+        <button class="step" data-step="1">
+          <span class="num">2</span>
+          <span><b>Agende e distribua</b><p>Escolha o colaborador, a data e a janela de horário. Ele recebe na hora, com endereço, telefone e valor.</p></span>
+        </button>
+        <button class="step" data-step="2">
+          <span class="num">3</span>
+          <span><b>Rota do dia no celular</b><p>A equipe abre o app, vê a sequência de atendimentos e traça a rota no mapa com um toque.</p></span>
+        </button>
+        <button class="step" data-step="3">
+          <span class="num">4</span>
+          <span><b>Executa, fotografa e assina</b><p>Checklist, foto de antes e depois, assinatura do colaborador e do cliente na tela do celular.</p></span>
+        </button>
+        <button class="step" data-step="4">
+          <span class="num">5</span>
+          <span><b>O financeiro se fecha sozinho</b><p>A OS concluída vira receita a receber e repasse a pagar. Você só confere e dá baixa.</p></span>
+        </button>
+      </div>
+
+      <div class="step-panel">
+        <div class="panel-view active" data-view="0">
+          <h3>Entrada de serviços sem digitação</h3>
+          <p>Manual, em lote ou por importação — do jeito que a sua operação já recebe.</p>
+          <div class="panel-card">
+            <div class="panel-list">
+              <div class="panel-item"><span class="dot"></span> Nova OS manual <span class="r">30s</span></div>
+              <div class="panel-item"><span class="dot"></span> Colar lista da loja (Ctrl+V) <span class="r">42 OS</span></div>
+              <div class="panel-item"><span class="dot"></span> Importar planilha CSV <span class="r">em lote</span></div>
+              <div class="panel-item"><span class="dot"></span> API para o ERP do parceiro <span class="r">Escala</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-view" data-view="1">
+          <h3>Cada serviço com dono e horário</h3>
+          <p>Nada mais fica “para alguém pegar”. O painel mostra na hora quem está sem serviço e o que está sem colaborador.</p>
+          <div class="panel-card">
+            <div class="panel-list">
+              <div class="panel-item"><span class="mock-av" style="background:#3B82F6">AR</span> Anderson · 4 serviços <span class="r" style="color:#12B981">Rota cheia</span></div>
+              <div class="panel-item"><span class="mock-av" style="background:#10B981">WS</span> Willian · 2 serviços <span class="r" style="color:#F5A524">Livre 14h</span></div>
+              <div class="panel-item"><span class="mock-av" style="background:#8B5CF6">DM</span> Diego · 3 serviços <span class="r" style="color:#12B981">Rota cheia</span></div>
+              <div class="panel-item"><span class="dot" style="background:#EF4444"></span> 5 OS sem colaborador <span class="r" style="color:#EF4444">Distribuir</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-view" data-view="2">
+          <h3>A rota do dia, pronta</h3>
+          <p>Ordenada por horário, agrupada por região e com um botão que abre tudo no Google Maps.</p>
+          <div class="panel-card">
+            <div class="panel-list">
+              <div class="panel-item"><span class="dot"></span> 08:00 · Rua das Acácias, 210 <span class="r">Centro</span></div>
+              <div class="panel-item"><span class="dot"></span> 10:30 · Av. Getúlio Vargas, 1180 <span class="r">Centro</span></div>
+              <div class="panel-item"><span class="dot"></span> 14:00 · Rua Ipiranga, 455 <span class="r">Vila Nova</span></div>
+              <div class="panel-item"><span class="dot"></span> 16:30 · Rua São Jorge, 92 <span class="r">Vila Nova</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-view" data-view="3">
+          <h3>A prova de que o serviço foi bem feito</h3>
+          <p>O colaborador assina, o cliente assina e a foto do serviço concluído fica anexada à OS para sempre.</p>
+          <div class="panel-card">
+            <div class="sign-grid" style="margin-top:0">
+              <div class="sign-cell">
+                <svg viewBox="0 0 200 50"><path d="M12 36 C28 6, 40 8, 46 26 C52 44, 62 42, 70 22 C78 6, 90 10, 94 28 C98 44, 112 40, 126 18 C136 6, 150 12, 158 28 C164 40, 176 34, 188 18" fill="none" stroke="#16233E" stroke-width="2.4" stroke-linecap="round"/></svg>
+                <b>Anderson Ribeiro</b><span>Colaborador · 16:42</span>
+              </div>
+              <div class="sign-cell">
+                <svg viewBox="0 0 200 50"><path d="M16 34 C26 14, 38 12, 44 30 C50 46, 60 40, 68 24 C76 10, 88 16, 94 32 C100 46, 116 38, 128 22 C140 8, 152 18, 160 30 C166 39, 178 36, 186 26" fill="none" stroke="#16233E" stroke-width="2.4" stroke-linecap="round"/></svg>
+                <b>Joelma S. Santos</b><span>Cliente · 16:43</span>
+              </div>
+            </div>
+            <div class="hash">sha256 · 9f2c7a1b04e8d3c65f7a2b19c4d8e0f3a6b5c7d9e1f2a3b4c5d6e7f8a9b0c1d2</div>
+          </div>
+        </div>
+
+        <div class="panel-view" data-view="4">
+          <h3>Fechamento sem planilha</h3>
+          <p>Receita da loja, repasse do colaborador e o lucro real do período — calculados a cada OS concluída.</p>
+          <div class="panel-card">
+            <div class="panel-list">
+              <div class="panel-item"><span class="dot"></span> Receita do mês <span class="r">R$ 42.860,00</span></div>
+              <div class="panel-item"><span class="dot" style="background:#3B82F6"></span> Repasses à equipe <span class="r">R$ 13.240,00</span></div>
+              <div class="panel-item"><span class="dot" style="background:#EF4444"></span> Custos e despesas <span class="r">R$ 2.510,00</span></div>
+              <div class="panel-item" style="background:#E9F9F2;border-color:#C8EEDE"><span class="dot" style="background:#12B981"></span> <b>Lucro</b> <span class="r" style="color:#0B7A57">R$ 27.110,00</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================================================== FEATURES ==== -->
+<section>
+  <div class="wrap">
+
+    <div class="feature reveal">
+      <div>
+        <span class="eyebrow">Assinatura digital</span>
+        <h2>O serviço só termina quando os dois assinam</h2>
+        <p>
+          Na última etapa da OS, o colaborador assina na tela e passa o celular para o cliente assinar.
+          O Prestta guarda as duas assinaturas com data, hora, IP e um <b>hash de integridade</b> —
+          a prova de que aquele serviço foi entregue e aceito.
+        </p>
+        <ul class="check-list">
+          <li><span class="ck">✓</span> Assinatura do colaborador e do cliente, com nome e documento</li>
+          <li><span class="ck">✓</span> Foto obrigatória do serviço concluído (você define a regra)</li>
+          <li><span class="ck">✓</span> Comprovante em link público para mandar no WhatsApp do cliente</li>
+          <li><span class="ck">✓</span> Funciona no celular, sem instalar nada</li>
+        </ul>
+      </div>
+      <div class="fig">
+        <div class="receipt">
+          <div class="receipt-top">
+            <div><b>Comprovante de serviço</b><br><span>OS-0184 · Prestta</span></div>
+            <span class="mock-tag tag-ok">Concluído</span>
+          </div>
+          <div class="receipt-body">
+            <div class="receipt-row"><span>Cliente</span><b>Joelma Silva Santos</b></div>
+            <div class="receipt-row"><span>Serviço</span><b>Cozinha planejada</b></div>
+            <div class="receipt-row"><span>Colaborador</span><b>Anderson Ribeiro</b></div>
+            <div class="receipt-row"><span>Duração</span><b>3h 12min</b></div>
+            <div class="receipt-row"><span>Avaliação</span><b>★★★★★</b></div>
+            <div class="sign-grid">
+              <div class="sign-cell">
+                <svg viewBox="0 0 200 50"><path d="M12 36 C28 6, 40 8, 46 26 C52 44, 62 42, 70 22 C78 6, 90 10, 94 28 C98 44, 112 40, 126 18 C136 6, 150 12, 158 28 C164 40, 176 34, 188 18" fill="none" stroke="#16233E" stroke-width="2.4" stroke-linecap="round"/></svg>
+                <b>Colaborador</b><span>16:42 · 26/08</span>
+              </div>
+              <div class="sign-cell">
+                <svg viewBox="0 0 200 50"><path d="M16 34 C26 14, 38 12, 44 30 C50 46, 60 40, 68 24 C76 10, 88 16, 94 32 C100 46, 116 38, 128 22 C140 8, 152 18, 160 30 C166 39, 178 36, 186 26" fill="none" stroke="#16233E" stroke-width="2.4" stroke-linecap="round"/></svg>
+                <b>Cliente</b><span>16:43 · 26/08</span>
+              </div>
+            </div>
+            <div class="hash">Verificação sha256 · 9f2c7a1b04e8d3c65f7a2b19c4d8e0f3a6b5c7d9</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature rev reveal">
+      <div>
+        <span class="eyebrow">App do colaborador</span>
+        <h2>A ordem de serviço no bolso de quem executa</h2>
+        <p>
+          Seu colaborador abre o app e vê só o que é dele: os serviços do dia, na ordem certa,
+          com endereço, contato do cliente, checklist e quanto ele vai receber por aquele serviço.
+        </p>
+        <ul class="check-list">
+          <li><span class="ck">✓</span> Iniciar, pausar e concluir com registro de horário</li>
+          <li><span class="ck">✓</span> Checklist do serviço definido por você</li>
+          <li><span class="ck">✓</span> Fotos de antes, depois e de avarias encontradas</li>
+          <li><span class="ck">✓</span> Extrato do que ele já recebeu e do que tem a receber</li>
+        </ul>
+      </div>
+      <div class="fig dark">
+        <div style="max-width:280px;margin:0 auto">
+          <div class="mock-phone" style="position:static;width:100%;animation:none">
+            <div class="phone-screen">
+              <div class="phone-top">
+                <small>Terça · 26 de agosto</small>
+                <b>Meus serviços de hoje</b>
+              </div>
+              <div class="phone-pad" style="background:#F7F5F0">
+                <div class="mock-rows" style="margin-bottom:8px">
+                  <div class="mock-row"><span class="mock-tag tag-run">08:00</span><span class="n">Joelma S.<br><span style="color:#8A94A6;font-size:.62rem">Rua das Acácias, 210</span></span><b style="font-size:.68rem">R$ 186</b></div>
+                  <div class="mock-row"><span class="mock-tag tag-wait">10:30</span><span class="n">Carlos E.<br><span style="color:#8A94A6;font-size:.62rem">Av. Getúlio Vargas, 1180</span></span><b style="font-size:.68rem">R$ 240</b></div>
+                  <div class="mock-row"><span class="mock-tag tag-wait">14:00</span><span class="n">Rita C.<br><span style="color:#8A94A6;font-size:.62rem">Rua Ipiranga, 455</span></span><b style="font-size:.68rem">R$ 132</b></div>
+                </div>
+                <div class="phone-btn">🗺️ Abrir rota no mapa</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature reveal">
+      <div>
+        <span class="eyebrow">Financeiro</span>
+        <h2>Quanto entra, quanto sai e quanto sobra</h2>
+        <p>
+          O Prestta entende os dois modelos de cobrança: <b>comissão sobre a nota do parceiro</b>
+          (aquele 8% da loja) e <b>serviço cobrado direto do cliente final</b>.
+          E calcula o repasse de cada colaborador por percentual ou valor fixo.
+        </p>
+        <ul class="check-list">
+          <li><span class="ck">✓</span> A receber por parceiro, com prazo de pagamento</li>
+          <li><span class="ck">✓</span> Acerto por colaborador: o que fechar na semana</li>
+          <li><span class="ck">✓</span> Baixa em lote de recebimentos e repasses</li>
+          <li><span class="ck">✓</span> Exportação CSV para o contador</li>
+        </ul>
+      </div>
+      <div class="fig">
+        <div class="panel-card" style="box-shadow:var(--shadow-md)">
+          <div class="panel-list">
+            <div class="panel-item"><span class="dot"></span> Central Móveis · 8% <span class="r">R$ 6.240,00</span></div>
+            <div class="panel-item"><span class="dot"></span> Casa &amp; Cia · 12% <span class="r">R$ 3.980,00</span></div>
+            <div class="panel-item"><span class="dot"></span> MegaLar · 10% <span class="r">R$ 5.110,00</span></div>
+            <div class="panel-item" style="background:#FFF7EA;border-color:#F6E2C2"><span class="dot"></span> <b>Total a receber</b> <span class="r" style="color:#A96A12">R$ 15.330,00</span></div>
+          </div>
+          <div style="height:14px"></div>
+          <div class="panel-list">
+            <div class="panel-item"><span class="mock-av" style="background:#3B82F6">AR</span> Anderson · 18 OS <span class="r">R$ 4.120,00</span></div>
+            <div class="panel-item"><span class="mock-av" style="background:#10B981">WS</span> Willian · 14 OS <span class="r">R$ 3.260,00</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- =================================================== SEGMENTOS ==== -->
+<section id="segmentos" class="bg-soft">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Para quem é</span>
+      <h2>Feito para quem trabalha na casa do cliente</h2>
+      <p>O Prestta nasceu dentro de uma operação de montagem de móveis. Hoje atende qualquer equipe que presta serviço externo.</p>
+    </div>
+    <div class="seg-grid">
+      <div class="seg reveal"><div class="ic">🪑</div><div><b>Montagem de móveis</b><span>Lojas, planejados, assistência</span></div></div>
+      <div class="seg reveal"><div class="ic">🔧</div><div><b>Assistência técnica</b><span>Eletro, linha branca, autorizadas</span></div></div>
+      <div class="seg reveal"><div class="ic">❄️</div><div><b>Climatização</b><span>Instalação e manutenção de ar</span></div></div>
+      <div class="seg reveal"><div class="ic">⚡</div><div><b>Elétrica e hidráulica</b><span>Manutenção predial e residencial</span></div></div>
+      <div class="seg reveal"><div class="ic">🧹</div><div><b>Limpeza e conservação</b><span>Equipes em vários endereços</span></div></div>
+      <div class="seg reveal"><div class="ic">🛠️</div><div><b>Instalações em geral</b><span>Vidros, persianas, marcenaria</span></div></div>
+      <div class="seg reveal"><div class="ic">📡</div><div><b>TI e telecom</b><span>Provedores, redes, câmeras</span></div></div>
+      <div class="seg reveal"><div class="ic">🏗️</div><div><b>Obras e reformas</b><span>Pequenas equipes e empreiteiros</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================= COMPARATIVO ==== -->
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Antes e depois</span>
+      <h2>Planilha + WhatsApp × Prestta</h2>
+    </div>
+    <div class="compare reveal">
+      <div class="compare-row compare-head">
+        <div>Na prática</div><div>Planilha + grupo</div><div>Com o Prestta</div>
+      </div>
+      <div class="compare-row"><div>Saber o que está acontecendo agora</div><div><span class="x">✕</span> Ligando para a equipe</div><div><span class="v">✓</span> Painel em tempo real</div></div>
+      <div class="compare-row"><div>Prova de que o serviço foi entregue</div><div><span class="x">✕</span> Foto solta no WhatsApp</div><div><span class="v">✓</span> Assinatura + foto na OS</div></div>
+      <div class="compare-row"><div>Quanto a loja ainda te deve</div><div><span class="x">✕</span> Conferindo nota por nota</div><div><span class="v">✓</span> Calculado por OS</div></div>
+      <div class="compare-row"><div>Acerto do colaborador</div><div><span class="x">✕</span> Calculadora e discussão</div><div><span class="v">✓</span> Fecha automático</div></div>
+      <div class="compare-row"><div>Histórico de um cliente</div><div><span class="x">✕</span> Rolar o grupo</div><div><span class="v">✓</span> Ficha completa</div></div>
+      <div class="compare-row"><div>Rota do dia</div><div><span class="x">✕</span> Na cabeça do montador</div><div><span class="v">✓</span> Pronta no mapa</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================= DEPOIMENTOS ==== -->
+<!-- DEPOIMENTOS DE EXEMPLO — troque por depoimentos reais de clientes antes de publicar. -->
+<section class="bg-soft">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Quem usa</span>
+      <h2>Operações que saíram da planilha</h2>
+    </div>
+    <div class="quotes">
+      <div class="quote reveal">
+        <div class="stars">★★★★★</div>
+        <p>“Antes eu passava o domingo montando a escala e conferindo nota. Hoje eu abro o painel, vejo o que está sem montador e resolvo em cinco minutos.”</p>
+        <div class="who"><div class="av" style="background:#3B82F6">NO</div><div><b>Natan O.</b><span>MontaFácil · 5 montadores</span></div></div>
+      </div>
+      <div class="quote reveal">
+        <div class="stars">★★★★★</div>
+        <p>“A assinatura do cliente acabou com a discussão de ‘o serviço não ficou bom’. Está tudo lá: foto, hora e assinatura das duas partes.”</p>
+        <div class="who"><div class="av" style="background:#10B981">AP</div><div><b>Aline P.</b><span>ClimaTec · 8 técnicos</span></div></div>
+      </div>
+      <div class="quote reveal">
+        <div class="stars">★★★★★</div>
+        <p>“O que mais me pegou foi o financeiro. Eu descobri que dois parceiros estavam me devendo há mais de 60 dias e eu nem sabia.”</p>
+        <div class="who"><div class="av" style="background:#8B5CF6">FR</div><div><b>Fábio R.</b><span>Eletro Rangel · 3 técnicos</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== PREÇOS ==== -->
+<section id="precos">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Planos</span>
+      <h2>Um plano que cabe no seu mês</h2>
+      <p>Todos com 14 dias grátis, sem cartão. Cancele quando quiser, sem multa.</p>
+      <div class="cycle-toggle" id="cycleToggle" style="display:inline-flex;margin-top:18px">
+        <button class="on" data-cycle="mensal">Mensal</button>
+        <button data-cycle="anual">Anual <span class="save-tag">-20%</span></button>
+      </div>
+    </div>
+    <div class="price-grid" id="priceGrid"></div>
+    <p class="price-note">
+      Pagamento seguro processado pela <b>Cakto</b> · Pix, boleto e cartão de crédito ·
+      Nota fiscal emitida automaticamente.
+    </p>
+  </div>
+</section>
+
+<!-- ========================================================= FAQ ==== -->
+<section id="faq" class="bg-soft">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Dúvidas frequentes</span>
+      <h2>O que todo mundo pergunta antes de começar</h2>
+    </div>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q">Preciso instalar alguma coisa no celular da equipe?</button>
+        <div class="faq-a"><p>Não. O Prestta roda no navegador do celular. O colaborador entra com o e-mail e a senha que você criou para ele e já vê os serviços do dia. Dá para salvar na tela de início como se fosse um aplicativo.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">A assinatura digital tem validade?</button>
+        <div class="faq-a"><p>A assinatura coletada no Prestta é uma assinatura eletrônica simples: registramos o desenho, o nome, o documento informado, a data e a hora, o IP e um hash de integridade que liga tudo isso à ordem de serviço. É o padrão usado em comprovantes de entrega e aceite de serviço, e serve como prova de que o cliente recebeu e aprovou o trabalho. Para contratos que exigem certificado ICP-Brasil, use uma certificadora — o comprovante do Prestta é complementar.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Consigo trazer os serviços que já estão na minha planilha?</button>
+        <div class="faq-a"><p>Sim. Você cola a lista ou envia o CSV e o Prestta reconhece as colunas de cliente, telefone, endereço, valor e data. Antes de importar, mostramos uma prévia para você conferir.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Como funciona o cálculo de comissão?</button>
+        <div class="faq-a"><p>De dois jeitos, e você escolhe por cliente. No modelo de parceria, você define o percentual que recebe sobre a nota da loja (ex.: 8%). No modelo direto, o valor da OS é seu por inteiro. O repasse ao colaborador pode ser um percentual da sua receita ou um valor fixo por serviço.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Meus colaboradores veem o quanto eu ganho?</button>
+        <div class="faq-a"><p>Não. O colaborador vê apenas as ordens atribuídas a ele e o valor do próprio repasse. Receita da loja, margem e financeiro geral ficam visíveis só para os perfis de administração.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">E se eu passar do limite de colaboradores do plano?</button>
+        <div class="faq-a"><p>O sistema avisa e oferece o upgrade na hora, com valor proporcional. Você não perde nenhum dado ao mudar de plano — e pode voltar ao plano anterior quando quiser.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Como faço para cancelar?</button>
+        <div class="faq-a"><p>Direto no painel, em Assinatura, com um clique. Sem ligação, sem multa e sem fidelidade. Seus dados continuam disponíveis para exportação por 90 dias.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================================================== CTA FINAL ==== -->
+<section class="cta-final" id="comecar">
+  <div class="wrap cta-grid">
+    <div>
+      <span class="eyebrow">Comece hoje</span>
+      <h2>Seus próximos serviços já podem nascer organizados</h2>
+      <p>Preencha ao lado e receba o acesso ao seu ambiente de teste — com dados de exemplo já carregados para você navegar sem cadastrar nada.</p>
+      <ul class="cta-points">
+        <li><span class="ck">✓</span> 14 dias completos, sem cartão de crédito</li>
+        <li><span class="ck">✓</span> Ajudamos a importar sua planilha atual</li>
+        <li><span class="ck">✓</span> Treinamento da equipe por videochamada</li>
+        <li><span class="ck">✓</span> Suporte por WhatsApp com gente de verdade</li>
+      </ul>
+    </div>
+
+    <div class="form-card">
+      <div id="formWrap">
+        <h3>Criar meu acesso de teste</h3>
+        <p>Leva menos de 1 minuto.</p>
+        <div class="progress"><i id="progressBar" style="width:25%"></i></div>
+        <div class="form-msg" id="formMsg"></div>
+
+        <form id="leadForm" novalidate>
+          <div class="fstep active" data-fstep="0">
+            <div class="field">
+              <label for="lf-name">Como podemos te chamar?</label>
+              <input id="lf-name" name="name" placeholder="Seu nome completo" autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="lf-company">Nome da sua empresa</label>
+              <input id="lf-company" name="company" placeholder="Ex.: MontaFácil Serviços" autocomplete="organization">
+            </div>
+          </div>
+
+          <div class="fstep" data-fstep="1">
+            <div class="field">
+              <label for="lf-email">Seu melhor e-mail</label>
+              <input id="lf-email" name="email" type="email" placeholder="voce@suaempresa.com.br" autocomplete="email">
+              <div class="hint">É com ele que você entra no sistema.</div>
+            </div>
+            <div class="field">
+              <label for="lf-phone">WhatsApp com DDD</label>
+              <input id="lf-phone" name="phone" inputmode="numeric" placeholder="(47) 99999-9999" autocomplete="tel">
+            </div>
+          </div>
+
+          <div class="fstep" data-fstep="2">
+            <div class="field">
+              <label>Qual é o seu segmento?</label>
+              <select id="lf-segment" name="segment">
+                <option value="montagem-de-moveis">Montagem de móveis</option>
+                <option value="assistencia-tecnica">Assistência técnica</option>
+                <option value="climatizacao">Climatização / refrigeração</option>
+                <option value="eletrica-hidraulica">Elétrica e hidráulica</option>
+                <option value="limpeza">Limpeza e conservação</option>
+                <option value="instalacoes">Instalações em geral</option>
+                <option value="ti-telecom">TI e telecom</option>
+                <option value="obras">Obras e reformas</option>
+                <option value="outro">Outro</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Quantas pessoas atendem em campo?</label>
+              <div class="choice-grid" id="teamChoices">
+                <div class="choice" data-value="1-2">Só eu / 2</div>
+                <div class="choice sel" data-value="3-5">3 a 5</div>
+                <div class="choice" data-value="6-10">6 a 10</div>
+                <div class="choice" data-value="11+">Mais de 10</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="fstep" data-fstep="3">
+            <div class="field">
+              <label for="lf-password">Crie uma senha de acesso</label>
+              <input id="lf-password" name="password" type="password" placeholder="Mínimo de 6 caracteres" autocomplete="new-password">
+            </div>
+            <label style="display:flex;gap:10px;align-items:flex-start;font-size:.84rem;color:#35405A;cursor:pointer">
+              <input type="checkbox" id="lf-demo" checked style="width:auto;margin-top:3px">
+              <span>Quero começar com <b>dados de exemplo</b> para navegar antes de cadastrar os meus.</span>
+            </label>
+          </div>
+
+          <div class="form-nav">
+            <button type="button" class="btn btn-outline" id="btnBack" style="display:none">Voltar</button>
+            <button type="submit" class="btn btn-primary btn-block" id="btnNext">Continuar →</button>
+          </div>
+        </form>
+        <p class="form-legal">Ao continuar você concorda com os termos de uso e a política de privacidade.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-about">
+        <a href="/" class="logo logo-dark"><span class="logo-mark">P</span> Prestta</a>
+        <p>O sistema de gestão para quem presta serviço na casa do cliente. Ordens de serviço, equipe, assinatura digital e financeiro em um só lugar.</p>
+        <a href="#comecar" class="btn btn-primary btn-sm">Testar grátis</a>
+      </div>
+      <div>
+        <h4>Produto</h4>
+        <a href="#recursos">Recursos</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#precos">Preços</a>
+        <a href="/entrar">Entrar</a>
+      </div>
+      <div>
+        <h4>Soluções</h4>
+        <a href="#segmentos">Montagem de móveis</a>
+        <a href="#segmentos">Assistência técnica</a>
+        <a href="#segmentos">Climatização</a>
+        <a href="#segmentos">Instalações</a>
+      </div>
+      <div>
+        <h4>Ajuda</h4>
+        <a href="#faq">Dúvidas frequentes</a>
+        <a href="https://wa.me/5547999999999" target="_blank" rel="noopener">Falar no WhatsApp</a>
+        <a href="mailto:contato@prestta.com.br">contato@prestta.com.br</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Prestta Tecnologia. Todos os direitos reservados.</span>
+      <span>Pagamentos processados pela Cakto · CNPJ 00.000.000/0001-00</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/5547999999999?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20Prestta" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.6c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5 4.4.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1120.2 12 8.2 8.2 0 0112 20.2z"/></svg>
+</a>
+
+<script>
+/* ------------------------------------------------------------------ *
+ * Navegação
+ * ------------------------------------------------------------------ */
+const nav = document.getElementById('nav');
+addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 12), { passive: true });
+document.getElementById('navToggle').onclick = () => document.getElementById('navLinks').classList.toggle('open');
+document.querySelectorAll('#navLinks a').forEach((a) => a.onclick = () => document.getElementById('navLinks').classList.remove('open'));
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ------------------------------------------------------------------ *
+ * Revelação no scroll + contadores
+ * ------------------------------------------------------------------ */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: .12 });
+document.querySelectorAll('.reveal').forEach((el, i) => {
+  el.style.transitionDelay = `${(i % 4) * 70}ms`;
+  io.observe(el);
+});
+
+const counters = new IntersectionObserver((entries) => {
+  entries.forEach((e) => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    const target = Number(el.dataset.count);
+    const prefix = el.dataset.prefix || '';
+    const suffix = el.dataset.suffix || '';
+    const start = performance.now();
+    const tick = (now) => {
+      const p = Math.min((now - start) / 1400, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = prefix + Math.round(target * eased).toLocaleString('pt-BR') + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+    counters.unobserve(el);
+  });
+}, { threshold: .5 });
+document.querySelectorAll('[data-count]').forEach((el) => counters.observe(el));
+
+/* ------------------------------------------------------------------ *
+ * Passos "Como funciona"
+ * ------------------------------------------------------------------ */
+const steps = document.querySelectorAll('.step');
+const views = document.querySelectorAll('.panel-view');
+let stepTimer;
+function showStep(i) {
+  steps.forEach((s, k) => s.classList.toggle('active', k === i));
+  views.forEach((v, k) => v.classList.toggle('active', k === i));
+}
+steps.forEach((s, i) => s.onclick = () => { showStep(i); clearInterval(stepTimer); });
+let auto = 0;
+stepTimer = setInterval(() => { auto = (auto + 1) % steps.length; showStep(auto); }, 5200);
+
+/* ------------------------------------------------------------------ *
+ * FAQ
+ * ------------------------------------------------------------------ */
+document.querySelectorAll('.faq-q').forEach((q) => {
+  q.onclick = () => {
+    const item = q.parentElement;
+    const open = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach((i) => {
+      i.classList.remove('open');
+      i.querySelector('.faq-a').style.maxHeight = null;
+    });
+    if (!open) {
+      item.classList.add('open');
+      item.querySelector('.faq-a').style.maxHeight = `${item.querySelector('.faq-a').scrollHeight}px`;
+    }
+  };
+});
+
+/* ------------------------------------------------------------------ *
+ * Preços
+ * ------------------------------------------------------------------ */
+let PLANS = [];
+let cycle = 'mensal';
+const brl = (cents) => (cents / 100).toLocaleString('pt-BR', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+
+function renderPlans() {
+  const grid = document.getElementById('priceGrid');
+  grid.innerHTML = PLANS.map((p) => {
+    const monthly = cycle === 'anual' ? p.price_anual : p.price_mensal;
+    const note = cycle === 'anual'
+      ? `Cobrado R$ ${brl(p.price_anual * 12)} por ano · economia de R$ ${brl((p.price_mensal - p.price_anual) * 12)}`
+      : 'Cobrado mensalmente · cancele quando quiser';
+    return `
+      <div class="price ${p.popular ? 'pop' : ''}" ${p.badge ? `data-badge="${p.badge}"` : ''}>
+        <h3>${p.name}</h3>
+        <span class="tag">${p.tagline}</span>
+        <div class="amount"><small>R$ </small>${brl(monthly)}<small>/mês</small></div>
+        <div class="cents">${note}</div>
+        <a href="#comecar" class="btn ${p.popular ? 'btn-primary' : 'btn-outline'} btn-block">Testar 14 dias grátis</a>
+        <ul>${p.highlights.map((h) => `<li><span class="ck">✓</span> ${h}</li>`).join('')}</ul>
+        <div style="font-size:.78rem;color:var(--muted-2);border-top:1px solid var(--line);padding-top:14px">
+          Até <b>${p.limits.users}</b> usuários · <b>${p.limits.orders_month.toLocaleString('pt-BR')}</b> OS/mês · <b>${p.limits.storage_gb} GB</b> de fotos
+        </div>
+      </div>`;
+  }).join('');
+}
+
+document.querySelectorAll('#cycleToggle button').forEach((b) => {
+  b.onclick = () => {
+    document.querySelectorAll('#cycleToggle button').forEach((x) => x.classList.remove('on'));
+    b.classList.add('on');
+    cycle = b.dataset.cycle;
+    renderPlans();
+  };
+});
+
+fetch('/api/plans').then((r) => r.json()).then((d) => { PLANS = d.plans; renderPlans(); });
+
+/* ------------------------------------------------------------------ *
+ * Formulário multi-etapa (lead -> cadastro)
+ * ------------------------------------------------------------------ */
+const fsteps = document.querySelectorAll('.fstep');
+const bar = document.getElementById('progressBar');
+const msg = document.getElementById('formMsg');
+const btnNext = document.getElementById('btnNext');
+const btnBack = document.getElementById('btnBack');
+let cur = 0;
+let leadSent = false;
+
+const utm = Object.fromEntries(new URLSearchParams(location.search));
+
+document.querySelectorAll('#teamChoices .choice').forEach((c) => {
+  c.onclick = () => {
+    document.querySelectorAll('#teamChoices .choice').forEach((x) => x.classList.remove('sel'));
+    c.classList.add('sel');
+  };
+});
+
+document.getElementById('lf-phone').addEventListener('input', (e) => {
+  const d = e.target.value.replace(/\D/g, '').slice(0, 11);
+  e.target.value = d.length > 10
+    ? `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`
+    : d.length > 6 ? `(${d.slice(0, 2)}) ${d.slice(2, 6)}-${d.slice(6)}`
+    : d.length > 2 ? `(${d.slice(0, 2)}) ${d.slice(2)}` : d;
+});
+
+function showFStep(i) {
+  cur = i;
+  fsteps.forEach((s, k) => s.classList.toggle('active', k === i));
+  bar.style.width = `${((i + 1) / fsteps.length) * 100}%`;
+  btnBack.style.display = i ? 'inline-flex' : 'none';
+  btnNext.textContent = i === fsteps.length - 1 ? 'Criar meu acesso grátis' : 'Continuar →';
+  const first = fsteps[i].querySelector('input, select');
+  if (first) setTimeout(() => first.focus(), 60);
+}
+
+function fail(text) {
+  msg.textContent = text;
+  msg.className = 'form-msg err';
+  return false;
+}
+
+function validate(i) {
+  msg.className = 'form-msg';
+  const v = (id) => document.getElementById(id).value.trim();
+  if (i === 0) {
+    if (v('lf-name').length < 3) return fail('Digite seu nome completo.');
+    if (v('lf-company').length < 2) return fail('Digite o nome da sua empresa.');
+  }
+  if (i === 1) {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v('lf-email'))) return fail('Digite um e-mail válido.');
+    if (v('lf-phone').replace(/\D/g, '').length < 10) return fail('Digite o WhatsApp com DDD.');
+  }
+  if (i === 3 && v('lf-password').length < 6) return fail('A senha precisa ter ao menos 6 caracteres.');
+  return true;
+}
+
+function payload() {
+  return {
+    name: document.getElementById('lf-name').value.trim(),
+    company: document.getElementById('lf-company').value.trim(),
+    email: document.getElementById('lf-email').value.trim().toLowerCase(),
+    phone: document.getElementById('lf-phone').value,
+    segment: document.getElementById('lf-segment').value,
+    team_size: document.querySelector('#teamChoices .choice.sel').dataset.value,
+    password: document.getElementById('lf-password').value,
+    demo: document.getElementById('lf-demo').checked,
+    source: 'landing-cta',
+    utm,
+  };
+}
+
+btnBack.onclick = () => showFStep(Math.max(0, cur - 1));
+
+document.getElementById('leadForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  if (!validate(cur)) return;
+
+  // Assim que temos e-mail e telefone, o lead já é registrado (mesmo se abandonar depois).
+  if (cur === 1 && !leadSent) {
+    leadSent = true;
+    fetch('/api/leads', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload()),
+    }).catch(() => {});
+  }
+
+  if (cur < fsteps.length - 1) return showFStep(cur + 1);
+
+  btnNext.disabled = true;
+  btnNext.textContent = 'Criando seu ambiente...';
+  try {
+    const res = await fetch('/api/signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload()),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Não foi possível criar sua conta.');
+
+    document.getElementById('formWrap').innerHTML = `
+      <div class="form-done">
+        <div class="big">✓</div>
+        <h3>Tudo pronto, ${data.user.name.split(' ')[0]}!</h3>
+        <p class="muted" style="font-size:.9rem">Seu ambiente de teste está no ar com 14 dias grátis.</p>
+        <a href="${data.redirect}" class="btn btn-primary btn-block btn-lg" style="margin-top:18px">Entrar no meu painel →</a>
+      </div>`;
+    setTimeout(() => { location.href = data.redirect; }, 1800);
+  } catch (err) {
+    btnNext.disabled = false;
+    btnNext.textContent = 'Criar meu acesso grátis';
+    fail(err.message);
+  }
+});
+</script>
+</body>
+</html>
