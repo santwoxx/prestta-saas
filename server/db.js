@@ -3,7 +3,10 @@ const { DatabaseSync } = require('node:sqlite');
 const fs = require('node:fs');
 const path = require('node:path');
 
-const DATA_DIR = path.join(__dirname, '..', 'data');
+// DATA_DIR pode apontar para um volume persistente em producao (ex.: /data no Fly.io).
+const DATA_DIR = process.env.DATA_DIR
+  ? path.resolve(process.env.DATA_DIR)
+  : path.join(__dirname, '..', 'data');
 fs.mkdirSync(DATA_DIR, { recursive: true });
 
 const db = new DatabaseSync(path.join(DATA_DIR, 'servio.db'));
@@ -244,7 +247,37 @@ CREATE TABLE IF NOT EXISTS webhook_events (
   created_at  TEXT NOT NULL
 );
 CREATE INDEX IF NOT EXISTS idx_wh_ext ON webhook_events (provider, external_id, event);
+
+CREATE TABLE IF NOT EXISTS email_log (
+  id         TEXT PRIMARY KEY,
+  tenant_id  TEXT,
+  to_email   TEXT NOT NULL,
+  template   TEXT NOT NULL,
+  dedupe_key TEXT,
+  subject    TEXT,
+  status     TEXT NOT NULL DEFAULT 'enviado',
+  detail     TEXT,
+  created_at TEXT NOT NULL
+);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_email_dedupe ON email_log (dedupe_key)
+  WHERE dedupe_key IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_email_tenant ON email_log (tenant_id, created_at);
 `);
+
+/* ------------------------------------------------------------------ *
+ * Migracoes
+ * Bancos criados antes de uma coluna nova precisam recebe-la aqui, ja que
+ * CREATE TABLE IF NOT EXISTS nao altera tabelas existentes.
+ * ------------------------------------------------------------------ */
+function addColumn(table, column, definition) {
+  const cols = db.prepare(`PRAGMA table_info(${table})`).all();
+  if (cols.some((c) => c.name === column)) return;
+  db.exec(`ALTER TABLE ${table} ADD COLUMN ${column} ${definition}`);
+  console.log(`[db] coluna adicionada: ${table}.${column}`);
+}
+
+// Momento em que a assinatura entrou em atraso - base para a carencia.
+addColumn('tenants', 'overdue_since', 'TEXT');
 
 /* ------------------------------------------------------------------ *
  * Helpers de acesso

@@ -1,0 +1,71 @@
+# ---------------------------------------------------------------------------
+# Render.com - Prestta
+#
+# ATENCAO sobre o plano FREE do Render: o disco e efemero. O banco SQLite e as
+# fotos sao apagados a cada deploy e a cada restart (o servico free dorme apos
+# 15 min sem acesso). Serve para DEMONSTRAR o sistema, nao para clientes reais.
+#
+# Para producao de verdade no Render, troque `plan: free` por `plan: starter`
+# e descomente o bloco `disk:` abaixo (disco persistente e pago).
+# ---------------------------------------------------------------------------
+services:
+  - type: web
+    name: prestta
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    region: oregon
+    plan: free
+    healthCheckPath: /api/health
+    autoDeploy: true
+
+    # --- Disco persistente (planos pagos) -------------------------------
+    # disk:
+    #   name: prestta-data
+    #   mountPath: /data
+    #   sizeGB: 1
+
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 8080
+      - key: DATA_DIR
+        value: /data/db
+      - key: UPLOAD_DIR
+        value: /data/uploads
+      - key: TRIAL_DAYS
+        value: 14
+      - key: GRACE_DAYS
+        value: 7
+      # Gerado automaticamente pelo Render (32+ caracteres aleatorios).
+      - key: APP_SECRET
+        generateValue: true
+      # Preencha no painel do Render (Environment):
+      - key: APP_URL
+        sync: false
+      - key: FIREBASE_PROJECT_ID
+        sync: false
+      - key: SUPERADMIN_EMAIL
+        sync: false
+      - key: CAKTO_WEBHOOK_SECRET
+        sync: false
+      - key: CAKTO_API_KEY
+        sync: false
+      - key: MAIL_PROVIDER
+        sync: false
+      - key: MAIL_API_KEY
+        sync: false
+      - key: MAIL_FROM
+        sync: false
+      - key: CAKTO_CHECKOUT_ESSENCIAL_MENSAL
+        sync: false
+      - key: CAKTO_CHECKOUT_ESSENCIAL_ANUAL
+        sync: false
+      - key: CAKTO_CHECKOUT_PRO_MENSAL
+        sync: false
+      - key: CAKTO_CHECKOUT_PRO_ANUAL
+        sync: false
+      - key: CAKTO_CHECKOUT_ESCALA_MENSAL
+        sync: false
+      - key: CAKTO_CHECKOUT_ESCALA_ANUAL
+        sync: false

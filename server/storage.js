@@ -3,7 +3,10 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { uid, sha256, bad } = require('./util');
 
-const UPLOAD_DIR = path.join(__dirname, '..', 'public', 'uploads');
+// UPLOAD_DIR tambem pode apontar para o volume persistente em producao.
+const UPLOAD_DIR = process.env.UPLOAD_DIR
+  ? path.resolve(process.env.UPLOAD_DIR)
+  : path.join(__dirname, '..', 'public', 'uploads');
 fs.mkdirSync(UPLOAD_DIR, { recursive: true });
 
 const MIME_EXT = {

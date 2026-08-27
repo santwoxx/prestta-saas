@@ -65,6 +65,7 @@ async function boot() {
     state.plan = me.plan;
     state.settings = me.tenant?.settings || {};
     state.trialDays = me.trial_days_left;
+    state.grace = me.grace || null;
   } catch {
     location.href = '/entrar';
     return;
@@ -117,10 +118,15 @@ function renderTrial() {
         <button class="btn btn-primary btn-sm btn-block" onclick="location.hash='#assinatura'">Ver planos</button>
       </div>`;
   } else if (state.tenant.status === 'atrasado') {
+    const g = state.grace;
+    const prazo = !g ? 'Regularize para manter o acesso da equipe.'
+      : g.inGrace
+        ? `Você tem ${g.daysLeft} dia${g.daysLeft === 1 ? '' : 's'} para regularizar antes do acesso ser pausado.`
+        : 'O prazo terminou e o acesso está pausado. Seus dados continuam guardados.';
     box.innerHTML = `
       <div class="trial-card" style="background:linear-gradient(140deg,#3A1D1D,#2A1616)">
         <b style="color:#FF9A9A">Pagamento pendente</b>
-        <p>Regularize para manter o acesso da equipe.</p>
+        <p>${prazo}</p>
         <button class="btn btn-primary btn-sm btn-block" onclick="location.hash='#assinatura'">Regularizar</button>
       </div>`;
   } else {

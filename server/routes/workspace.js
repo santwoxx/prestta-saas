@@ -4,6 +4,7 @@ const { all, get, insert, update } = require('../db');
 const U = require('../util');
 const plans = require('../plans');
 const cakto = require('../cakto');
+const authLib = require('../auth');
 const calc = require('../calc');
 
 const router = express.Router();
@@ -81,6 +82,7 @@ router.get('/subscription', wrap(async (req, res) => {
     trial_days_left: t.status === 'trial' && t.trial_ends_at
       ? Math.max(0, Math.ceil((new Date(t.trial_ends_at) - Date.now()) / 864e5))
       : null,
+    grace: authLib.graceInfo(t),
     subscription: sub ? { ...sub, raw: undefined } : null,
     plans: plans.PLANS,
     integration: {

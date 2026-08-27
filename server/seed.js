@@ -30,8 +30,8 @@ if (RESET) {
 /* ------------------------------------------------------------------ *
  * Superadmin do SaaS
  * ------------------------------------------------------------------ */
-const SUPER_EMAIL = 'admin@prestta.com.br';
-if (false && !get('SELECT id FROM users WHERE email=?', [SUPER_EMAIL])) {
+const SUPER_EMAIL = (process.env.SUPERADMIN_EMAIL || 'admin@prestta.com.br').toLowerCase();
+if (!get('SELECT id FROM users WHERE email=?', [SUPER_EMAIL])) {
   insert('users', {
     id: U.uid('u'), tenant_id: null, name: 'Administrador Prestta',
     email: SUPER_EMAIL, password_hash: auth.hashPassword('prestta123'),
@@ -116,7 +116,7 @@ if (!owner) {
   console.log('\n  Acessos:');
   console.log(`   Administrador : ${DEMO_EMAIL} / demo1234`);
   console.log(`   Colaborador   : ${result.equipe[0].email} / campo123`);
-  console.log(`   Dono do SaaS  : ${SUPER_EMAIL} / servio123\n`);
+  console.log(`   Dono do SaaS  : ${SUPER_EMAIL} / prestta123\n`);
 } else {
   console.log('Conta demo ja existe. Use "npm run reset" para recriar do zero.');
 }

@@ -4,6 +4,8 @@ const { all, get, insert, update } = require('../db');
 const U = require('../util');
 const cakto = require('../cakto');
 const plans = require('../plans');
+const mailer = require('../mailer');
+const auth = require('../auth');
 
 const router = express.Router();
 const { wrap, uid, nowISO } = U;
@@ -147,15 +149,62 @@ function applyEvent(tenant, evt, verified) {
   }[evt.action];
 
   if (tenantStatus) {
-    update('tenants', tenant.id, {
-      status: tenantStatus,
-      plan: planId,
-      cycle,
-      ...(evt.action === 'ativar' ? { trial_ends_at: null } : {}),
-    });
+    const patch = { status: tenantStatus, plan: planId, cycle };
+
+    if (evt.action === 'ativar') {
+      patch.trial_ends_at = null;
+      patch.overdue_since = null;          // pagamento em dia: zera a carencia
+    } else if (evt.action === 'suspender') {
+      // Marca o inicio do atraso apenas na primeira falha, para a carencia
+      // nao reiniciar a cada nova tentativa de cobranca recusada.
+      if (!tenant.overdue_since) patch.overdue_since = now;
+    }
+
+    update('tenants', tenant.id, patch);
+    notify(tenant, evt.action, { planId, cycle, amount: data.amount, periodEnd });
   }
 
   return `${evt.event} -> ${evt.action} (plano ${planId}/${cycle}${verified ? '' : ', SEM validacao de segredo'})`;
+}
+
+/**
+ * Avisa o dono da conta por e-mail. Nunca lanca: um erro de e-mail nao pode
+ * fazer o webhook responder 500 e a Cakto ficar reenviando.
+ */
+function notify(tenant, action, { planId, cycle, amount, periodEnd }) {
+  try {
+    const owner = get(
+      "SELECT name, email FROM users WHERE tenant_id=? AND role IN ('dono','admin') AND active=1 ORDER BY role='dono' DESC LIMIT 1",
+      [tenant.id],
+    ) || { name: tenant.name, email: tenant.email };
+    if (!owner.email) return;
+
+    const base = { name: owner.name, company: tenant.name, planName: plans.byId(planId)?.name || planId };
+    const day = new Date().toISOString().slice(0, 10);
+
+    if (action === 'ativar') {
+      mailer.sendAsync({
+        to: owner.email, tenantId: tenant.id, template: 'pagamento_aprovado',
+        dedupeKey: `pago:${tenant.id}:${periodEnd || day}`,
+        data: { ...base, cycle, amount: U.money(amount), periodEnd },
+      });
+    } else if (action === 'suspender') {
+      const since = tenant.overdue_since ? new Date(tenant.overdue_since) : new Date();
+      mailer.sendAsync({
+        to: owner.email, tenantId: tenant.id, template: 'pagamento_falhou',
+        dedupeKey: `falhou:${tenant.id}:${day}`,
+        data: { ...base, graceUntil: U.addDays(since, auth.graceDays()).toISOString() },
+      });
+    } else if (action === 'cancelar') {
+      mailer.sendAsync({
+        to: owner.email, tenantId: tenant.id, template: 'assinatura_cancelada',
+        dedupeKey: `cancelou:${tenant.id}:${day}`,
+        data: base,
+      });
+    }
+  } catch (err) {
+    console.warn('[webhook] falha ao notificar por e-mail:', err.message);
+  }
 }
 
 /**

@@ -133,7 +133,7 @@ function renderPerfil(body) {
         </div>
       </div>
       
-      <button class="btn btn-outline btn-block" style="margin-top:24px" onclick="location.href='/api/auth/logout'">Sair do aplicativo</button>
+      <button class="btn btn-outline btn-block" style="margin-top:24px" onclick="sair()">Sair do aplicativo</button>
     </div>
   `;
 }
@@ -440,3 +440,13 @@ function openSignatureFlow(id) {
 }
 
 init();
+
+
+/* ------------------------------------------------------------------ *
+ * Logout (POST /api/logout - o cookie de sessao e httpOnly)
+ * ------------------------------------------------------------------ */
+async function sair() {
+  try { await post('/logout'); } catch { /* segue para o login de qualquer forma */ }
+  location.href = '/entrar';
+}
+window.sair = sair;

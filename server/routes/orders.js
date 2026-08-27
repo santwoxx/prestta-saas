@@ -5,6 +5,7 @@ const U = require('../util');
 const auth = require('../auth');
 const calc = require('../calc');
 const storage = require('../storage');
+const plans = require('../plans');
 
 const router = express.Router();
 const { wrap, uid, nowISO, clean, toCents, bad, notFound, forbidden } = U;
@@ -165,6 +166,22 @@ router.post('/orders', wrap(async (req, res) => {
   const b = req.body || {};
   const data = orderPayload(b, tid);
   if (!data.client_name) throw bad('Informe o nome do cliente.');
+
+  // Limite de OS por mes do plano contratado.
+  const monthLimit = plans.byId(req.tenant?.plan)?.limits?.orders_month;
+  if (monthLimit) {
+    const used = get(
+      'SELECT COUNT(*) AS n FROM orders WHERE tenant_id=? AND created_at>=?',
+      [tid, U.monthRange()[0]],
+    )?.n || 0;
+    if (used >= monthLimit) {
+      throw bad(
+        `Seu plano permite ${monthLimit} ordens de servico por mes e voce ja criou ${used}. `
+        + 'Faca upgrade para continuar registrando OS neste mes.',
+        { upgrade: true },
+      );
+    }
+  }
 
   // Herda a comissao padrao do parceiro quando nao informada.
   if (data.customer_id && b.commission_pct === undefined) {

@@ -12,7 +12,8 @@
     "start": "node server/index.js",
     "dev": "node --watch-path=server server/index.js",
     "seed": "node server/seed.js",
-    "reset": "node server/seed.js --reset"
+    "reset": "node server/seed.js --reset",
+    "bootstrap": "node server/bootstrap.js"
   },
   "dependencies": {
     "express": "^4.21.2",

@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comprovante de serviço · Prestta</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='26' fill='%2316181D'/><text y='72' x='50' text-anchor='middle' font-size='62' font-family='sans-serif' font-weight='bold' fill='%23F5A524'>P</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/site.css">
+<style>
+  body { background: var(--bg); }
+  .rc-wrap { max-width: 760px; margin: 0 auto; padding: 28px 18px 60px; }
+  .rc-doc { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow-md); overflow: hidden; }
+  .rc-head { background: var(--ink); color: #fff; padding: 26px 28px; }
+  .rc-head .brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 700; }
+  .rc-head .brand .logo-mark { width: 34px; height: 34px; border-radius: 10px; background: var(--gold); color: #26170A; display: grid; place-items: center; font-weight: 800; }
+  .rc-head h1 { font-family: var(--font-display); font-size: 1.5rem; margin: 16px 0 4px; }
+  .rc-head .sub { color: #A9B3C4; font-size: .9rem; }
+  .rc-badge { display: inline-block; margin-top: 14px; padding: 5px 12px; border-radius: 999px; font-size: .74rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
+  .st-concluida { background: rgba(18,185,129,.18); color: #4ADEA9; }
+  .st-outra { background: rgba(245,165,36,.18); color: var(--gold-2); }
+  .rc-sec { padding: 22px 28px; border-top: 1px solid var(--line); }
+  .rc-sec h2 { font-family: var(--font-display); font-size: .82rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted-2); margin: 0 0 14px; }
+  .rc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px 22px; }
+  .rc-field b { display: block; font-size: .72rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted-2); margin-bottom: 3px; font-weight: 600; }
+  .rc-field span { font-size: .95rem; color: var(--text); font-weight: 500; }
+  .rc-items { width: 100%; border-collapse: collapse; font-size: .9rem; }
+  .rc-items th { text-align: left; font-size: .72rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted-2); padding: 0 0 8px; border-bottom: 1px solid var(--line); }
+  .rc-items td { padding: 10px 0; border-bottom: 1px solid var(--line); }
+  .rc-items td:last-child, .rc-items th:last-child { text-align: right; }
+  .rc-photos { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+  .rc-photo { border: 1px solid var(--line); border-radius: var(--radius-sm); overflow: hidden; background: var(--bg-2); }
+  .rc-photo img { width: 100%; height: 130px; object-fit: cover; display: block; }
+  .rc-photo .cap { padding: 7px 9px; font-size: .74rem; color: var(--muted); }
+  .rc-sign { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; }
+  .rc-sign .box { border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 12px; }
+  .rc-sign img { width: 100%; height: 92px; object-fit: contain; background: #fff; }
+  .rc-sign .who { margin-top: 8px; font-weight: 600; font-size: .9rem; }
+  .rc-sign .meta { font-size: .72rem; color: var(--muted-2); word-break: break-all; line-height: 1.5; }
+  .rc-check li { margin-bottom: 6px; font-size: .92rem; }
+  .rc-foot { padding: 20px 28px 26px; text-align: center; color: var(--muted); font-size: .8rem; }
+  .rc-foot a { color: var(--gold-3); font-weight: 600; }
+  .rc-state { text-align: center; padding: 70px 20px; color: var(--muted); }
+  .rc-actions { display: flex; gap: 10px; justify-content: center; margin: 18px 0 0; flex-wrap: wrap; }
+  @media print {
+    body { background: #fff; }
+    .rc-wrap { padding: 0; max-width: none; }
+    .rc-doc { border: 0; box-shadow: none; }
+    .rc-actions { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="rc-wrap">
+  <div id="root"><div class="rc-state">Carregando comprovante…</div></div>
+  <div class="rc-actions" id="actions" style="display:none">
+    <button class="btn btn-outline btn-sm" onclick="window.print()">🖨️ Imprimir / salvar PDF</button>
+  </div>
+</div>
+
+<script>
+const money = (c) => (Number(c || 0) / 100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+const esc = (v) => String(v ?? '').replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+const dt = (iso, time = true) => {
+  if (!iso) return '';
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return '';
+  const day = d.toLocaleDateString('pt-BR');
+  return time ? `${day} às ${d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}` : day;
+};
+
+const token = location.pathname.split('/').filter(Boolean).pop();
+
+function field(label, value) {
+  if (!value) return '';
+  return `<div class="rc-field"><b>${esc(label)}</b><span>${esc(value)}</span></div>`;
+}
+
+function render(d) {
+  const os = d.os || {};
+  const emp = d.empresa || {};
+  const itens = d.itens || [];
+  const fotos = d.fotos || [];
+  const assinaturas = d.assinaturas || [];
+  const checklist = Array.isArray(os.checklist) ? os.checklist : [];
+  const total = itens.reduce((s, i) => s + Math.round((i.qty || 1) * (i.unit_value || 0)), 0);
+  const concluida = os.status === 'concluida';
+
+  const antes = fotos.filter((f) => f.kind === 'antes');
+  const depois = fotos.filter((f) => f.kind !== 'antes');
+
+  const grupoFotos = (titulo, lista) => (!lista.length ? '' : `
+    <h3 style="font-size:.8rem;color:var(--muted);margin:14px 0 8px;font-weight:600">${titulo}</h3>
+    <div class="rc-photos">${lista.map((f) => `
+      <div class="rc-photo">
+        <img src="${esc(f.url)}" alt="${esc(f.caption || titulo)}" loading="lazy">
+        ${f.caption ? `<div class="cap">${esc(f.caption)}</div>` : ''}
+      </div>`).join('')}</div>`);
+
+  document.title = `OS ${os.code || ''} · ${emp.name || 'Prestta'}`;
+
+  document.getElementById('root').innerHTML = `
+    <div class="rc-doc">
+      <div class="rc-head">
+        <div class="brand"><span class="logo-mark">P</span> ${esc(emp.name || 'Prestta')}</div>
+        <h1>Comprovante de serviço ${esc(os.code || '')}</h1>
+        <div class="sub">${esc(os.title || os.service_type || 'Ordem de serviço')}</div>
+        <span class="rc-badge ${concluida ? 'st-concluida' : 'st-outra'}">
+          ${concluida ? '✓ Serviço concluído' : esc(os.status || 'em andamento')}
+        </span>
+      </div>
+
+      <div class="rc-sec">
+        <h2>Dados do atendimento</h2>
+        <div class="rc-grid">
+          ${field('Cliente', os.client_name)}
+          ${field('Endereço', os.address)}
+          ${field('Agendado para', dt(os.scheduled_at))}
+          ${field('Início', dt(os.started_at))}
+          ${field('Conclusão', dt(os.finished_at))}
+          ${field('Duração', os.duration_min ? `${os.duration_min} min` : '')}
+          ${field('Profissional', os.colaborador)}
+          ${field('Parceiro', os.parceiro)}
+        </div>
+        ${os.description ? `<p style="margin:16px 0 0;color:var(--muted);font-size:.92rem;line-height:1.6">${esc(os.description)}</p>` : ''}
+      </div>
+
+      ${itens.length ? `
+      <div class="rc-sec">
+        <h2>Itens do serviço</h2>
+        <table class="rc-items">
+          <thead><tr><th>Descrição</th><th>Qtd</th><th>Valor</th></tr></thead>
+          <tbody>${itens.map((i) => `
+            <tr>
+              <td>${i.done ? '✓ ' : ''}${esc(i.description)}</td>
+              <td>${Number(i.qty || 1).toLocaleString('pt-BR')}</td>
+              <td>${money(Math.round((i.qty || 1) * (i.unit_value || 0)))}</td>
+            </tr>`).join('')}
+          </tbody>
+          <tfoot><tr><td colspan="2" style="font-weight:700;padding-top:12px">Total</td>
+            <td style="font-weight:700;padding-top:12px">${money(total)}</td></tr></tfoot>
+        </table>
+      </div>` : ''}
+
+      ${checklist.length ? `
+      <div class="rc-sec">
+        <h2>Checklist executado</h2>
+        <ul class="rc-check" style="margin:0;padding-left:18px">
+          ${checklist.map((c) => {
+            const label = typeof c === 'string' ? c : (c.label || c.text || '');
+            const done = typeof c === 'object' && (c.done || c.checked);
+            return `<li>${done ? '✅' : '⬜'} ${esc(label)}</li>`;
+          }).join('')}
+        </ul>
+      </div>` : ''}
+
+      ${fotos.length ? `
+      <div class="rc-sec">
+        <h2>Registro fotográfico</h2>
+        ${grupoFotos('Antes', antes)}
+        ${grupoFotos('Depois', depois)}
+      </div>` : ''}
+
+      ${assinaturas.length ? `
+      <div class="rc-sec">
+        <h2>Assinaturas digitais</h2>
+        <div class="rc-sign">
+          ${assinaturas.map((a) => `
+            <div class="box">
+              <img src="${esc(a.url)}" alt="Assinatura de ${esc(a.name)}">
+              <div class="who">${esc(a.name)}</div>
+              <div class="meta">
+                ${esc(a.role === 'cliente' ? 'Cliente' : 'Responsável técnico')}${a.doc ? ` · ${esc(a.doc)}` : ''}<br>
+                Assinado em ${dt(a.signed_at)}<br>
+                Hash: ${esc(String(a.hash || '').slice(0, 32))}…
+              </div>
+            </div>`).join('')}
+        </div>
+        <p style="margin:14px 0 0;font-size:.76rem;color:var(--muted-2);line-height:1.6">
+          Cada assinatura foi coletada no local do serviço e registrada com data, hora e um hash
+          criptográfico que vincula o desenho a esta ordem de serviço.
+        </p>
+      </div>` : ''}
+
+      ${os.rating || os.client_feedback ? `
+      <div class="rc-sec">
+        <h2>Avaliação do cliente</h2>
+        ${os.rating ? `<div style="font-size:1.3rem;color:var(--gold)">${'★'.repeat(os.rating)}<span style="color:var(--line)">${'★'.repeat(Math.max(0, 5 - os.rating))}</span></div>` : ''}
+        ${os.client_feedback ? `<p style="margin:8px 0 0;color:var(--muted);font-size:.92rem">"${esc(os.client_feedback)}"</p>` : ''}
+      </div>` : ''}
+
+      <div class="rc-foot">
+        ${esc(emp.name || '')}${emp.city ? ` · ${esc(emp.city)}/${esc(emp.uf || '')}` : ''}
+        ${emp.phone ? `<br>Contato: ${esc(emp.phone)}` : ''}
+        <br><br>Documento gerado pelo <a href="/" target="_blank">Prestta</a>
+      </div>
+    </div>`;
+
+  document.getElementById('actions').style.display = 'flex';
+}
+
+fetch(`/api/public/orders/${encodeURIComponent(token)}`)
+  .then(async (r) => {
+    const data = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(data.error || 'Comprovante não encontrado.');
+    return data;
+  })
+  .then(render)
+  .catch((err) => {
+    document.getElementById('root').innerHTML = `
+      <div class="rc-doc"><div class="rc-state">
+        <div style="font-size:2.6rem;margin-bottom:10px">🔍</div>
+        <h1 style="font-family:var(--font-display);font-size:1.2rem;color:var(--text)">Comprovante indisponível</h1>
+        <p>${esc(err.message)}</p>
+        <p style="margin-top:18px"><a href="/" class="btn btn-outline btn-sm">Ir para o site</a></p>
+      </div></div>`;
+  });
+</script>
+</body>
+</html>

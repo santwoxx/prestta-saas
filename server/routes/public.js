@@ -5,6 +5,8 @@ const U = require('../util');
 const auth = require('../auth');
 const firebase = require('../firebase');
 const plans = require('../plans');
+const mailer = require('../mailer');
+const uploads = require('./uploads');
 const { decorate } = require('../calc');
 
 const router = express.Router();
@@ -141,6 +143,15 @@ router.post('/signup', wrap(async (req, res) => {
   auth.setSession(res, user);
   auth.touchLogin(userId);
 
+  // Boas-vindas: disparado sem await para nao atrasar a resposta do cadastro.
+  mailer.sendAsync({
+    to: user.email,
+    tenantId,
+    template: 'boas_vindas',
+    dedupeKey: `boas-vindas:${tenantId}`,
+    data: { name: user.name, company, trialDays },
+  });
+
   res.status(201).json({
     ok: true,
     tenant: get('SELECT * FROM tenants WHERE id=?', [tenantId]),
@@ -181,10 +192,17 @@ router.post('/login/google', wrap(async (req, res) => {
   const email = decodedToken.email.toLowerCase();
 
   const candidates = all('SELECT * FROM users WHERE email=? ORDER BY created_at', [email]);
-  const user = candidates[0]; // Pega a conta principal com este e-mail
-  
-  if (!user) throw bad('Usuário não encontrado. Por favor, crie uma conta primeiro.');
-  if (!user.active) throw U.forbidden('Seu acesso foi desativado. Fale com o administrador da conta.');
+  // O mesmo e-mail pode existir como dono de uma conta e como colaborador de
+  // outra. Entramos sempre pela conta de maior privilegio.
+  const RANK = { superadmin: 0, dono: 1, admin: 2, campo: 3 };
+  const user = candidates
+    .filter((u) => u.active)
+    .sort((a, b) => (RANK[a.role] ?? 9) - (RANK[b.role] ?? 9))[0];
+
+  if (!user) {
+    if (candidates.length) throw U.forbidden('Seu acesso foi desativado. Fale com o administrador da conta.');
+    throw bad('Nao encontramos uma conta com este e-mail. Crie sua conta primeiro.');
+  }
 
   auth.setSession(res, user);
   auth.touchLogin(user.id);
@@ -283,6 +301,15 @@ router.post('/signup/google', wrap(async (req, res) => {
   auth.setSession(res, user);
   auth.touchLogin(userId);
 
+  // Boas-vindas: disparado sem await para nao atrasar a resposta do cadastro.
+  mailer.sendAsync({
+    to: user.email,
+    tenantId,
+    template: 'boas_vindas',
+    dedupeKey: `boas-vindas:${tenantId}`,
+    data: { name: user.name, company, trialDays },
+  });
+
   res.status(201).json({
     ok: true,
     tenant: get('SELECT * FROM tenants WHERE id=?', [tenantId]),
@@ -305,6 +332,7 @@ router.get('/me', (req, res) => {
     plan: tenant ? plans.byId(tenant.plan) : null,
     redirect: redirectFor(req.user),
     trial_days_left: trialDaysLeft(tenant),
+    grace: auth.graceInfo(req.tenant),
   });
 });
 
@@ -342,11 +370,14 @@ router.get('/public/orders/:token', wrap(async (req, res) => {
       colaborador: assignee?.name || null,
     },
     itens: all('SELECT description, qty, unit_value, done FROM order_items WHERE order_id=?', [order.id]),
-    fotos: all('SELECT kind, url, caption, created_at FROM order_photos WHERE order_id=? ORDER BY created_at', [order.id]),
+    // As imagens sao protegidas: sem sessao elas so abrem com o token da
+    // propria OS, entao ele vai anexado em cada URL.
+    fotos: all('SELECT kind, url, caption, created_at FROM order_photos WHERE order_id=? ORDER BY created_at', [order.id])
+      .map((f) => ({ ...f, url: uploads.withToken(f.url, order.public_token) })),
     assinaturas: all(
       'SELECT role, name, doc, url, hash, signed_at FROM order_signatures WHERE order_id=? ORDER BY signed_at',
       [order.id],
-    ),
+    ).map((a) => ({ ...a, url: uploads.withToken(a.url, order.public_token) })),
   });
 }));
 

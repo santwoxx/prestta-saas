@@ -1,0 +1,50 @@
+# ---------------------------------------------------------------------------
+# Fly.io - Prestta
+# Crie o app com:  fly launch --no-deploy --copy-config
+# Depois:          fly volumes create prestta_data --size 1 --region gru
+# Segredos:        fly secrets set APP_SECRET=... CAKTO_WEBHOOK_SECRET=... ...
+# Deploy:          fly deploy
+# ---------------------------------------------------------------------------
+app = "prestta"
+primary_region = "gru"           # Sao Paulo
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  NODE_ENV = "production"
+  PORT = "8080"
+  DATA_DIR = "/data/db"
+  UPLOAD_DIR = "/data/uploads"
+  TRIAL_DAYS = "14"
+
+# Volume persistente: SQLite + fotos/assinaturas vivem aqui.
+[[mounts]]
+  source = "prestta_data"
+  destination = "/data"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "suspend"
+  auto_start_machines = true
+  min_machines_running = 0       # 0 = dorme quando ocioso (mais barato)
+  # IMPORTANTE: mantenha 1 unica maquina. SQLite em arquivo nao suporta
+  # duas instancias escrevendo no mesmo volume.
+  processes = ["app"]
+
+  [http_service.concurrency]
+    type = "requests"
+    hard_limit = 200
+    soft_limit = 150
+
+[[http_service.checks]]
+  grace_period = "15s"
+  interval = "30s"
+  method = "GET"
+  timeout = "5s"
+  path = "/api/health"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"
