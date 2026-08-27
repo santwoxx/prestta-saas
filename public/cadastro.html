@@ -285,6 +285,7 @@ document.getElementById('form').addEventListener('submit', async (e) => {
     const res = await fetch(endpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
+      credentials: 'same-origin',
       body: JSON.stringify(body),
     });
     const data = await res.json();

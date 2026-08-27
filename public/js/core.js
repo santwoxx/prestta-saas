@@ -6,6 +6,7 @@
 async function api(path, options = {}) {
   const res = await fetch(`/api${path}`, {
     headers: { 'Content-Type': 'application/json' },
+    credentials: 'same-origin',
     ...options,
     body: options.body && typeof options.body !== 'string' ? JSON.stringify(options.body) : options.body,
   });

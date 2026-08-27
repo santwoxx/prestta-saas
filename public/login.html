@@ -113,6 +113,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
     const res = await fetch('/api/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
+      credentials: 'same-origin',
       body: JSON.stringify({ email, password }),
     });
     const data = await res.json().catch(() => ({}));
@@ -161,6 +162,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
       const res = await fetch('/api/login/google', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'same-origin',
         body: JSON.stringify({ token }),
       });
       const data = await res.json().catch(() => ({}));
